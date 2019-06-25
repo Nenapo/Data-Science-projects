@@ -1,0 +1,32 @@
+#a.Build a decision tree model where dependent variable is ‘Churn’ & independent variable is ‘tenure’
+
+#Load libraries
+
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.model_selection import train_test_split
+
+#define independent & dependent variable
+x=customer_data['tenure']
+y=customer_data['Churn']
+
+#convert array into matrix & reshape both the matrix
+x=np.asmatrix(x)
+x=x.reshape(-1,1)
+y=np.asmatrix(y)
+y=y.reshape(-1,1)
+
+#i.Divide the dataset in 80:20 ratio
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.20,random_state=0)
+
+#ii.Build the model on train set and predict the values on test set
+#building model
+clf.fit(x_train,y_train)
+#predict values on test set
+y_predict=clf.predict(x_test)
+print(y_predict)
+
+#iii.Build the confusion matrix and calculate the accuracy
+confusion_matrix(y_test,y_pred)
+accuracy_score(y_test,y_pred)
