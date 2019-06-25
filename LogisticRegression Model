@@ -1,0 +1,40 @@
+#a.Build a simple logistic regression model where dependent variable is ‘Churn’ & independent variable is ‘MonthlyCharges’
+
+# Load libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import LabelEncoder 
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+# defining independent & dependent variable
+
+x=customer_data.MonthlyCharges
+y=customer_data.Churn
+logreg=LogisticRegression()
+le=LabelEncoder()
+
+#convert the x & y into matrix form and then reshape the data
+y=np.asmatrix(y)
+y=y.reshape(-1,1)
+x=np.asmatrix(x)
+x=x.reshape(-1,1)
+
+#i.Divide the dataset in 65:35 ratio
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.35,random_state=0)
+
+#ii.Build the model on train set and predict the values on test set
+
+#building model on train set
+logreg.fit(x_train,y_train)
+
+#predicting values on test set
+y_pred=logreg.predict(x_test)
+print(y_pred)
+
+#iii.Build the confusion matrix and get the accuracy score
+
+confusion_matrix(y_test,y_pred)
+accuracy_score(y_test,y_pred)
