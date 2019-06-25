@@ -1,0 +1,40 @@
+# Importing Libraries and Data file
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+customer_data=pd.read_csv(r'C:\Users\AC028TX\Desktop\Intelipaat\Python for Data Science\support docs(Code-PPT-Assignment-project)\customer_churn.csv')
+customer_data
+
+# a.Extract the 5th column & store it in ‘customer_5’
+customer_5=customer_data.loc[:,'Dependents']
+customer_5.head(5)
+
+#b.Extract the 15th column & store it in ‘customer_15’
+customer_15=customer_data.iloc[:,14]
+customer_15.head(5)
+
+#c.Extract all the male senior citizens whose Payment Method is Electronic check & store the result in ‘senior_male_electronic’
+senior_male_electronic = customer_data[(customer_data['gender']=='Male') & (customer_data['SeniorCitizen']==1) & (customer_data['PaymentMethod']=='Electronic check')]
+senior_male_electronic.head(5)
+
+#senior_male_electronic.count()
+
+#d.Extract all those customers whose tenure is greater than 70 months or their Monthly charges is more than 100$ & store the result in ‘customer_total_tenure’
+customer_total_tenure=customer_data[(customer_data['tenure']>70)|(customer_data['MonthlyCharges']>100)]
+customer_total_tenure.head(5)
+
+#e.Extract all the customers whose Contract is of two years, payment method is Mailed check & the value of Churn is ‘Yes’ & store the result in ‘two_mail_yes’
+two_mail_yes=customer_data[(customer_data['Contract']=='Two year') & (customer_data['PaymentMethod']=='Mailed check') & (customer_data['Churn']=='Yes')]
+two_mail_yes
+
+#f.Extract 333 random records from the customer_churn dataframe & store the result in ‘customer_333’
+import numpy as np
+customer_333= np.random.random(333)
+customer_333
+
+#g.Get the count of different levels from the ‘Churn’ column
+count= customer_data['Churn'].count()
+count
