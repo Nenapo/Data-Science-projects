@@ -38,3 +38,33 @@ print(y_pred)
 
 confusion_matrix(y_test,y_pred)
 accuracy_score(y_test,y_pred)
+
+
+#b.Build a multiple logistic regression model where dependent variable is ‘Churn’ & independent variables are ‘tenure’ & ‘MonthlyCharges’
+
+#defining independent & dependent variable
+
+x=customer_data[['tenure','MonthlyCharges']]
+y=customer_data['Churn']
+
+#convert array into matrix and reshape the data
+
+y = np.asmatrix(y)
+y=y.reshape(-1,1)
+
+#i.Divide the dataset in 80:20 ratio
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.20,random_state=0)
+
+# ii.Build the model on train set and predict the values on test set
+
+#building model on train set
+logreg.fit(x_train,y_train)
+
+#predicting values with test data
+y_pred=logreg.predict(x_test)
+print(y_pred)
+
+#iii.Build the confusion matrix and get the accuracy score
+
+confusion_matrix(y_test,y_pred)
+accuracy_score(y_test,y_pred)
